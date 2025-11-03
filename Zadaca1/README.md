@@ -43,7 +43,7 @@ Programer je osnovna klasa koja implementira interface Osoba i sadrži osnovne o
 - Osobine : ime, prezime, godine iskustva, oznaka zemlje i skup jezika.
 Init blok provjerava validnost podataka korištenjem "require" funkcije.
 
-##Klase BackendDeveloper i FrontendDeveloper
+## Klase BackendDeveloper i FrontendDeveloper
 
 ```kotlin
 class BackendDeveloper(ime: String, prezime: String, brGodIskustva: Int, oznakaZemlje: String, jezici: List<String>,
@@ -59,3 +59,17 @@ Parametri konstruktora:
 - Nasljeđivanje: : Programer(...) znači da BackendDeveloper nasljeđuje sve osobine i metode iz Programer.
 
 Dakle, klase BackendDeveloper i FrontendDeveloper imaju sve što i Programer, plus svoju posebnu informaciju framework.
+Sve metode iz Programer (npr. puniIdentitet() ili oznZemljeP()) mogu se koristiti i na backend i frontend developerima.
+
+## Funkcija koja vraća podatke koliko programera koristi određeni programski jezik. 
+``` kotlin 
+
+fun brProgrameraPoJeziku(programeri: List<Programer>): Map<String, Int> {
+    return programeri.flatMap{programer -> programer.skupJezika }.groupingBy{jezik -> jezik }.eachCount()
+}
+
+```
+- Funkcija prima listu programera (programeri: List<Programer>).
+- Vraća mapu (Map<String, Int>) gdje je:
+- kljuc → naziv programskog jezika (npr. "Python", "Java")
+- value → broj programera koji koriste taj jezik.
