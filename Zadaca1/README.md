@@ -41,4 +41,21 @@ open class Programer(val ime: String, val prezime: String, val brGodIskustva: In
 ```
 Programer je osnovna klasa koja implementira interface Osoba i sadrži osnovne osobine svih programera.
 - Osobine : ime, prezime, godine iskustva, oznaka zemlje i skup jezika.
-init blok provjerava validnost podataka korištenjem "require" funkcije. 
+Init blok provjerava validnost podataka korištenjem "require" funkcije.
+
+##Klase BackendDeveloper i FrontendDeveloper
+
+```kotlin
+class BackendDeveloper(ime: String, prezime: String, brGodIskustva: Int, oznakaZemlje: String, jezici: List<String>,
+    val framework: String) : Programer(ime, prezime, brGodIskustva, oznakaZemlje, jezici)
+
+class FrontendDeveloper(ime: String, prezime: String, brGodIskustva: Int, oznakaZemlje: String, jezici: List<String>,
+    val framework: String) : Programer(ime, prezime, brGodIskustva, oznakaZemlje, jezici)
+```
+Ove klase nasljeđuju osnovnu klasu Programer i dodaju jedno novo svojstvo – framework. 
+Parametri konstruktora:
+- ime, prezime, brGodIskustva, oznakaZemlje, jezici → prenose se direktno u super klasu Programer.
+- framework → novo polje koje opisuje koji framework backend developer koristi.
+- Nasljeđivanje: : Programer(...) znači da BackendDeveloper nasljeđuje sve osobine i metode iz Programer.
+
+Dakle, klase BackendDeveloper i FrontendDeveloper imaju sve što i Programer, plus svoju posebnu informaciju framework.
