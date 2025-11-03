@@ -71,5 +71,5 @@ fun brProgrameraPoJeziku(programeri: List<Programer>): Map<String, Int> {
 ```
 - Funkcija prima listu programera (programeri: List<Programer>).
 - Vraća mapu (Map<String, Int>) gdje je:
-- kljuc → naziv programskog jezika (npr. "Python", "Java")
-- value → broj programera koji koriste taj jezik.
+  kljuc → naziv programskog jezika (npr. "Python", "Java")
+  value → broj programera koji koriste taj jezik.
