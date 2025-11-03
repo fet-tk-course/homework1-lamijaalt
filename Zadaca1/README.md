@@ -264,4 +264,4 @@ Mujo Alić - Frontend developer — jezici:typescript, kotlin — framework:Angu
 Lejla Šarić - Backend developer — jezici:java, c# — framework:Node.js
 
  - Provjere ispravnosti  : 
-Hasan Avdić - Backend developer — jezici:typescript, python — framework:Spring Boot
+
