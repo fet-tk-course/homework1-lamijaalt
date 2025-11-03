@@ -1,5 +1,5 @@
 # RMAS-2025 
-#🎓 Zadaća -  A 
+# 🎓 Zadaća -  A 
 ---
 ## Uvod
 Ovaj projekat implementira sistem za **organizaciju meetup događaja**.  
