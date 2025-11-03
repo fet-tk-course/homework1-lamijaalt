@@ -69,7 +69,7 @@ fun brProgrameraPoJeziku(programeri: List<Programer>): Map<String, Int> {
 }
 
 ```
-- Funkcija prima listu programera (programeri: List<Programer>).
-- Vraća mapu (Map<String, Int>) gdje je:
-  kljuc → naziv programskog jezika (npr. "Python", "Java")
-  value → broj programera koji koriste taj jezik.
+Funkcija brProgrameraPoJeziku služi da iz liste programera izvuče informacije o tome koliko programera koristi svaki programski jezik. Funkcija prima listu objekata tipa Programer i vraća mapu čiji su ključevi nazivi jezika, a vrijednosti broj programera koji poznaju taj jezik.
+
+Unutar funkcije prvo se koristi metoda flatMap, koja prolazi kroz sve programere i iz svakog uzima njegov skup jezika. Rezultat je jedna velika lista svih programskih jezika koje koriste programeri. Nakon toga primjenjuje se funkcija groupingBy, koja organizuje sve elemente liste u grupe po jeziku, tako da svi ponovljeni jezici budu u istoj grupi. Na kraju, funkcija eachCount prolazi kroz te grupe i broji koliko elemenata pripada svakoj grupi, tj. koliko programera koristi svaki jezik.
+
