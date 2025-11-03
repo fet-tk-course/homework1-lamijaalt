@@ -20,8 +20,8 @@ interface Osoba {
 }
 ```
 
-puniIdentitet() vraća ime i prezime
-oznZemljeP() vraća oznaku zemlje
+- puniIdentitet() vraća ime i prezime
+- oznZemljeP() vraća oznaku zemlje
 
 ## Klasa Programer
 ```kotlin
