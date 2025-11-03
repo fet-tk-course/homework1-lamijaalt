@@ -168,3 +168,60 @@ Ova funkcija služi za pregled i ispis podataka o programerima. Funkcija prima l
 - Za svakog programera se prvo određuje njegov tip: ako je instanca klase BackendDeveloper, tip se označava kao "Backend developer", a ako je instanca klase FrontendDeveloper, tip se označava kao "Frontend developer". Ako programer nije ni backend ni frontend, tip se jednostavno označava kao "Programer".
 - Zatim se provjerava da li programer ima pripadajući framework (samo backend i frontend developeri ga imaju). Ako ima, vrijednost se sprema u varijablu framework, a ako ne, ostaje prazna.
 - Na kraju, println ispisuje sve relevantne informacije za programera.
+
+## MAIN 
+``` kotlin
+
+fun main() {
+
+    val programeri = listOf(
+        BackendDeveloper("Lamija", "Altumbabić", 1, "BA", listOf("Python","Java"), "Spring Boot"),
+        FrontendDeveloper("Mujo", "Alić", 2, "DE", listOf("TypeScript", "Kotlin"), "Angular"),
+        BackendDeveloper("Lejla", "Šarić", 5, "BA", listOf("Java","C#"), "Node.js"),
+        FrontendDeveloper("Lamija", "Ahmetašević", 2, "BA", listOf("HTML", "CSS"), "React"),
+        BackendDeveloper("Hasan", "Avdić", 6, "BA", listOf("TypeScript", "Python"), "Spring Boot")
+    )
+
+    println("\n - Programeri : ")
+    prikaziProgramere(programeri)
+
+    println("\n - Broj programera po jeziku (prva metoda) :")
+    println(brProgrameraPoJeziku(programeri))
+    println("\n - Broj programera po jeziku (rucno) :")
+    println(brProgrameraPoJezikuRucno(programeri))
+
+    println("\n - Prosječno iskustvo po jeziku (prva metoda) : ")
+    println(prosjekIskustvaPoJeziku(programeri))
+    println("\n - Prosječno iskustvo po jeziku (rucno) : ")
+    println(prosjekIskustvaPoJezikuRucno(programeri))
+
+   val frameworks = listOf("Spring Boot", "React", "Angular", "Node.js")
+   
+	for (fw in frameworks) {
+    println("\n - Filtriranje po frameworku '$fw' : ")
+    val filtrirani = filterPoFrameworku(programeri, fw)
+        prikaziProgramere(filtrirani)
+    
+	}
+    
+    println("\n - Provjere ispravnosti  : ")
+	programeri.forEach { p -> try {
+       require(p.ime.isNotBlank() && p.prezime.isNotBlank()) { "Programer mora imati ime i prezime! (${p.ime} ${p.prezime})" }
+       require(p.brGodIskustva >= 0) { "Programer ${p.puniIdentitet()} ima negativno iskustvo!" }
+       require(p.skupJezika.isNotEmpty()) { "Programer ${p.puniIdentitet()} mora poznavati bar jedan programski jezik!" }
+    } catch (e: IllegalArgumentException) {
+        println("Greška: ${e.message}")
+    	}
+	}
+    
+}
+
+``` 
+Ovaj dio koda predstavlja glavni program i služi za demonstraciju rada cijelog sistema koji smo prethodno definisali.
+Prvo se kreira lista programeri koja sadrži nekoliko instanci klasa BackendDeveloper i FrontendDeveloper. Svaki programer ima uneseno ime, prezime, broj godina iskustva, oznaku zemlje, listu poznatih programskih jezika i framework koji koristi.
+Zatim se poziva funkcija prikaziProgramere koja ispisuje sve programere sa svim relevantnim informacijama na pregledan način.
+Nakon toga, glavni program prikazuje statistike:
+- Broj programera po jeziku
+- Prosječno iskustvo po jeziku
+- Filtriranje po frameworku
+Na kraju, glavni program provodi provjeru ispravnosti podataka koristeći require izraze. Ova provjera osigurava da svaki programer ima ispravno uneseno ime, prezime, ne negativan broj godina iskustva i barem jedan programski jezik. Ukoliko neki podatak nije validan, ispisuje se odgovarajuća greška.
