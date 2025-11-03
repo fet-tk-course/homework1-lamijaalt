@@ -231,19 +231,37 @@ AI alat je korišten za razumjevanje funkcije require(). Također, korišten je 
 
 ## Konzolni ispis 
 ```text
-Programeri : 
+ - Programeri : 
 Lamija Altumbabić - Backend developer — jezici:python, java — framework:Spring Boot
 Mujo Alić - Frontend developer — jezici:typescript, kotlin — framework:Angular
 Lejla Šarić - Backend developer — jezici:java, c# — framework:Node.js
 Lamija Ahmetašević - Frontend developer — jezici:html, css — framework:React
 Hasan Avdić - Backend developer — jezici:typescript, python — framework:Spring Boot
 
-- Broj programera po jeziku (prva metoda) :
+ - Broj programera po jeziku (prva metoda) :
 {python=2, java=2, typescript=2, kotlin=1, c#=1, html=1, css=1}
 
-- Prosječno iskustvo po jeziku (prva metoda) : 
+ - Broj programera po jeziku (rucno) :
+{python=2, java=2, typescript=2, kotlin=1, c#=1, html=1, css=1}
+
+ - Prosječno iskustvo po jeziku (prva metoda) : 
 {python=3.5, java=3.0, typescript=4.0, kotlin=2.0, c#=5.0, html=2.0, css=2.0}
 
-- Filtriranje po frameworku 'Spring Boot' : 
+ - Prosječno iskustvo po jeziku (rucno) : 
+{python=3.5, java=3.0, typescript=4.0, kotlin=2.0, c#=5.0, html=2.0, css=2.0}
+
+ - Filtriranje po frameworku 'Spring Boot' : 
 Lamija Altumbabić - Backend developer — jezici:python, java — framework:Spring Boot
+Hasan Avdić - Backend developer — jezici:typescript, python — framework:Spring Boot
+
+ - Filtriranje po frameworku 'React' : 
+Lamija Ahmetašević - Frontend developer — jezici:html, css — framework:React
+
+ - Filtriranje po frameworku 'Angular' : 
+Mujo Alić - Frontend developer — jezici:typescript, kotlin — framework:Angular
+
+ - Filtriranje po frameworku 'Node.js' : 
+Lejla Šarić - Backend developer — jezici:java, c# — framework:Node.js
+
+ - Provjere ispravnosti  : 
 Hasan Avdić - Backend developer — jezici:typescript, python — framework:Spring Boot
