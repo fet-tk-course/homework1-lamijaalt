@@ -91,6 +91,13 @@ fun filterPoFrameworku(programeri: List<Programer>, fw: String): List<Programer>
     }
 }
 
+
+fun developersUsingAll(programeri: List<Programer>, jezici: List<String>) : List<Programer> {
+    val filtriraniJezici = jezici.map { it.lowercase() }
+    return programeri.filter { programer -> filtriraniJezici.all { jezik -> jezik in programer.skupJezika } }
+}
+
+
 //Funkcija za ispis programera
 fun prikaziProgramere(programeri: List<Programer>) {
     for (programer in programeri) {
@@ -120,6 +127,7 @@ fun main() {
         BackendDeveloper("Lejla", "Šarić", 5, "BA", listOf("Java","C#"), "Node.js"),
         FrontendDeveloper("Lamija", "Ahmetašević", 2, "BA", listOf("HTML", "CSS"), "React"),
         BackendDeveloper("Hasan", "Avdić", 6, "BA", listOf("TypeScript", "Python"), "Spring Boot")
+        
     )
 
     println("\n - Programeri : ")
@@ -134,6 +142,8 @@ fun main() {
     println(prosjekIskustvaPoJeziku(programeri))
     println("\n - Prosječno iskustvo po jeziku (rucno) : ")
     println(prosjekIskustvaPoJezikuRucno(programeri))
+    
+    
 
    val frameworks = listOf("Spring Boot", "React", "Angular", "Node.js")
    
@@ -143,6 +153,12 @@ fun main() {
         prikaziProgramere(filtrirani)
     
 	}
+  
+    val langs = listOf("Typescript")
+	println("\n Programeri koji znaju sve jezike iz liste : $langs:")
+	val filtered = developersUsingAll(programeri, langs)
+	prikaziProgramere(filtered)
+    
     
     //Provjera ispravnosti sa izuzecima.
     // U ovom dijelu koda je korišten AI alat, koji je predložio rješenje sa require provjerama
