@@ -225,3 +225,25 @@ Nakon toga, glavni program prikazuje statistike:
 - Prosječno iskustvo po jeziku
 - Filtriranje po frameworku
 Na kraju, glavni program provodi provjeru ispravnosti podataka koristeći require izraze. Ova provjera osigurava da svaki programer ima ispravno uneseno ime, prezime, ne negativan broj godina iskustva i barem jedan programski jezik. Ukoliko neki podatak nije validan, ispisuje se odgovarajuća greška.
+
+## Upotreba AI alata
+AI alat je korišten za razumjevanje funkcije require(). Također, korišten je za formiranje finalne provjere ispravnosti. Upotreba AI alata je bila neophodna s obzirom da provjere validnosti nismo prelazili na lab. vježbama. 
+
+## Konzolni ispis 
+```text
+Programeri : 
+Lamija Altumbabić - Backend developer — jezici:python, java — framework:Spring Boot
+Mujo Alić - Frontend developer — jezici:typescript, kotlin — framework:Angular
+Lejla Šarić - Backend developer — jezici:java, c# — framework:Node.js
+Lamija Ahmetašević - Frontend developer — jezici:html, css — framework:React
+Hasan Avdić - Backend developer — jezici:typescript, python — framework:Spring Boot
+
+- Broj programera po jeziku (prva metoda) :
+{python=2, java=2, typescript=2, kotlin=1, c#=1, html=1, css=1}
+
+- Prosječno iskustvo po jeziku (prva metoda) : 
+{python=3.5, java=3.0, typescript=4.0, kotlin=2.0, c#=5.0, html=2.0, css=2.0}
+
+- Filtriranje po frameworku 'Spring Boot' : 
+Lamija Altumbabić - Backend developer — jezici:python, java — framework:Spring Boot
+Hasan Avdić - Backend developer — jezici:typescript, python — framework:Spring Boot
