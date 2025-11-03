@@ -61,7 +61,7 @@ Parametri konstruktora:
 Dakle, klase BackendDeveloper i FrontendDeveloper imaju sve što i Programer, plus svoju posebnu informaciju framework.
 Sve metode iz Programer (npr. puniIdentitet() ili oznZemljeP()) mogu se koristiti i na backend i frontend developerima.
 
-## Funkcija koja vraća podatke koliko programera koristi određeni programski jezik. 
+## Funkcija brProgrameraPoJeziku. 
 ``` kotlin 
 
 fun brProgrameraPoJeziku(programeri: List<Programer>): Map<String, Int> {
@@ -73,3 +73,98 @@ Funkcija brProgrameraPoJeziku služi da iz liste programera izvuče informacije 
 
 Unutar funkcije prvo se koristi metoda flatMap, koja prolazi kroz sve programere i iz svakog uzima njegov skup jezika. Rezultat je jedna velika lista svih programskih jezika koje koriste programeri. Nakon toga primjenjuje se funkcija groupingBy, koja organizuje sve elemente liste u grupe po jeziku, tako da svi ponovljeni jezici budu u istoj grupi. Na kraju, funkcija eachCount prolazi kroz te grupe i broji koliko elemenata pripada svakoj grupi, tj. koliko programera koristi svaki jezik.
 
+## Funkcija brProgrameraPoJeziku, druga verzija.
+``` kotlin
+
+fun brProgrameraPoJezikuRucno(programeri: List<Programer>): Map<String, Int> {
+    val brPoJeziku = mutableMapOf<String, Int>()
+    for (programer in programeri) {
+        for (jezik in programer.skupJezika) {
+            brPoJeziku[jezik] = (brPoJeziku[jezik] ?: 0) + 1
+        }
+    }
+    return brPoJeziku
+}
+
+```
+Funkcija brProgrameraPoJezikuRucno radi istu stvar kao prethodna verzija, ali je implementirana “ručno”, koristeći petlje umjesto ugrađenih funkcija za grupisanje. Funkcija prima listu programera i vraća mapu u kojoj su ključevi nazivi programskih jezika, a vrijednosti predstavljaju koliko programera koristi taj jezik.
+
+Unutar funkcije kreira se prazna mutabilna mapa koja će čuvati broj programera po jeziku. Zatim se prolazi kroz svaki programer u listi, a unutar tog prolaza kroz sve jezike koje taj programer poznaje. Za svaki jezik provjerava se da li već postoji u mapi – ako postoji, njegova vrijednost se uvećava za jedan, a ako ne postoji, postavlja se na jedan. Na kraju funkcija vraća mapu sa svim jezicima i odgovarajućim brojem programera koji ih koriste.
+
+## Funkcije prosjekIskustvaPoJeziku
+
+``` kotlin
+fun prosjekIskustvaPoJeziku(programeri: List<Programer>): Map<String, Double> {
+    return programeri.flatMap { programer -> programer.skupJezika.map {jezik -> jezik to programer.brGodIskustva} }
+        .groupBy(
+            { par -> par.first },
+            { par -> par.second }
+        ).mapValues { (_, lista) -> lista.average() }
+}
+
+fun prosjekIskustvaPoJezikuRucno(programeri: List<Programer>): Map<String, Double> {
+    val suma = mutableMapOf<String, Int>()
+    val broj = mutableMapOf<String, Int>()
+
+    for (programer in programeri) {
+        for (jezik in programer.skupJezika) {
+            suma[jezik] = (suma[jezik] ?: 0) + programer.brGodIskustva
+            broj[jezik] = (broj[jezik] ?: 0) + 1
+        }
+    }
+
+    val prosjek = mutableMapOf<String, Double>()
+    for (jezik in suma.keys) {
+        prosjek[jezik] = suma[jezik]!!.toDouble() / broj[jezik]!!
+    }
+    return prosjek
+}
+
+``` 
+
+Ove dvije funkcije služe za izračunavanje prosječnog radnog iskustva programera po programskim jezicima, ali su implementirane na dva različita načina. Prva verzija koristi ugrađene funkcije za grupisanje. Funkcija prvo “raspakira” sve jezike koje programeri koriste i poveže ih sa njihovim godinama iskustva, kreirajući parove jezik-godine. Zatim se ti parovi grupišu po jeziku, a za svaku grupu se izračunava prosjek godina iskustva. Rezultat je mapa u kojoj je svaki ključ naziv jezika, a vrijednost predstavlja prosječno iskustvo svih programera koji taj jezik koriste.
+
+Druga verzija radi isto, ali bez funkcija. Tu se kreiraju dvije mape: jedna za zbir godina iskustva po jeziku, a druga za broj programera koji poznaju taj jezik. Petljama se prolazi kroz sve programere i njihove jezike, sabiraju se godine iskustva i broje programeri. Na kraju se za svaki jezik računa prosjek dijeljenjem ukupnog iskustva sa brojem programera, i rezultat se smješta u mapu koja se vraća iz funkcije. 
+
+
+## Funkcija filterpoFrameworku
+``` kotlin
+fun filterPoFrameworku(programeri: List<Programer>, fw: String): List<Programer> {
+    return programeri.filter { programer ->
+        (programer is BackendDeveloper && programer.framework == fw) ||
+        (programer is FrontendDeveloper && programer.framework == fw)
+    }
+}
+``` 
+Ova funkcija služi za izdvajanje programera koji koriste određeni framework. Funkcija prima listu svih programera i naziv frameworka koji želimo filtrirati. Unutar funkcije se koristi ugrađena metoda filter, koja prolazi kroz sve elemente liste i provjerava uslove definisane u lambda izrazu.
+Lambda izraz provjerava da li je programer instanca klase BackendDeveloper ili FrontendDeveloper i da li mu je framework polje jednako proslijeđenom nazivu frameworka. Samo oni programeri koji zadovoljavaju ove uslove ostaju u rezultujućoj listi.
+
+## Funkcija za ispis programera 
+
+``` kotlin
+
+fun prikaziProgramere(programeri: List<Programer>) {
+    for (programer in programeri) {
+        val tip = if (programer is BackendDeveloper)
+            "Backend developer"
+        else if (programer is FrontendDeveloper)
+            "Frontend developer"
+        else
+            "Programer"
+        
+        val framework = if (programer is BackendDeveloper)
+            programer.framework
+        else if (programer is FrontendDeveloper)
+            programer.framework
+       	else
+        ""
+        println("${programer.puniIdentitet()} - $tip — jezici:${programer.skupJezika.joinToString(", ")} — framework:$framework")
+    }
+}
+
+```
+Ova funkcija služi za pregled i ispis podataka o programerima. Funkcija prima listu programera i prolazi kroz svaki element liste koristeći petlju for.
+
+- Za svakog programera se prvo određuje njegov tip: ako je instanca klase BackendDeveloper, tip se označava kao "Backend developer", a ako je instanca klase FrontendDeveloper, tip se označava kao "Frontend developer". Ako programer nije ni backend ni frontend, tip se jednostavno označava kao "Programer".
+- Zatim se provjerava da li programer ima pripadajući framework (samo backend i frontend developeri ga imaju). Ako ima, vrijednost se sprema u varijablu framework, a ako ne, ostaje prazna.
+- Na kraju, println ispisuje sve relevantne informacije za programera.
