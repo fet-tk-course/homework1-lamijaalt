@@ -19,9 +19,9 @@ interface Osoba {
     fun oznZemljeP(): String
 }
 ```
-
+Ovaj interface sadrži dvije metode.
 - puniIdentitet() vraća ime i prezime
-- oznZemljeP() vraća oznaku zemlje
+- oznZemljeP() vraća oznaku zemlje porijekla
 
 ## Klasa Programer
 ```kotlin
@@ -39,6 +39,6 @@ open class Programer(val ime: String, val prezime: String, val brGodIskustva: In
     override fun oznZemljeP() = oznakaZemlje
 }
 ```
-Programer je osnovna klasa koja implementira interface Osoba.
-Polja: ime, prezime, godine iskustva, oznaka zemlje i skup jezika.
-init blok provjerava validnost podataka korištenjem "require" funkcije.
+Programer je osnovna klasa koja implementira interface Osoba i sadrži osnovne osobine svih programera.
+- Osobine : ime, prezime, godine iskustva, oznaka zemlje i skup jezika.
+init blok provjerava validnost podataka korištenjem "require" funkcije. 
